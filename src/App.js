@@ -20,9 +20,9 @@ function App() {
         const [a, b, c] = pattern;
         if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
           if (cells[a] === "X") {
-            setGameState("Player 2");
+            setGameState("Player 2 Won");
           } else {
-            setGameState("Player 1");
+            setGameState("Player 1 Won");
           }
         }
       }
@@ -35,11 +35,13 @@ function App() {
   }, [cells]);
   return (
     <div className="App">
+      <div style= {{marginTop: '50px'}}>
       <h1>Welcome to Johnnythesnake's tictactoe</h1>
+      </div>
       <header className="App-header">
 
         <div style={{ marginBottom: '20px', color:'black' }}>
-          Player {player1Turn? 1 : 2}'s turn 
+          {!gameState && <span>Player {player1Turn? 1 : 2}'s turn </span>}
         </div>
         <div className="tic-tac-toe">
         {cells.map((value, index) => (
@@ -56,8 +58,9 @@ function App() {
            />
         ))}
         </div>
-
-        {gameState && <div>Winner: {gameState === "Draw" ? "Draw" : gameState}  </div>}
+        <div style={{ marginBottom: '20px', color:'green' }}>
+          {gameState && gameState === "Draw" ? "Draw" : gameState} 
+        </div>
 
       </header>
     </div>

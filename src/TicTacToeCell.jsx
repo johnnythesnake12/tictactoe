@@ -6,7 +6,7 @@ const TicTacToeCell = (props) => {
     const fillCell = () => {
       // console.log(props);
       // Assuming 'X' is the next value to set, and that you will handle turns somewhere else
-      if (value === "") {
+      if (value === "" && !props.gameState) {
         if (props.player1Turn) { // This will ensure the cell can only be filled once
           test = "O";
           setValue('O');
@@ -14,12 +14,12 @@ const TicTacToeCell = (props) => {
           test = "X";
           setValue('X')
         }
-        console.log(test);
+        console.log(props.cells);
+        console.log(props.gameState);
         props.changePlayerTurn();
         props.setCells((cells) => {
           return cells.map((cell, i) => {
-            console.log("");
-            return props.index === i ? test : cell;
+            return props.location === i ? test : cell;
           } 
           )
         })
